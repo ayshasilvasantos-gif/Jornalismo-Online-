@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Meu Site</title>
+
     <style>
-        /* Reseta margens e espaçamentos padrão */
+        /* RESET PADRÃO */
         * {
             margin: 0;
             padding: 0;
@@ -17,32 +20,124 @@
             background-color: #f4f4f4;
         }
 
-        /* Primeira Seção: Faixa do topo */
+        /* PRIMEIRA SEÇÃO: BARRA SUPERIOR */
         .top-bar {
             width: 100%;
             height: 65px;
-            background-color: #1a1a1a; /* Cor de fundo da faixa */
+            background-color: #1a1a1a;
+
             display: flex;
-            align-items: center;       /* Centraliza a logo na vertical */
-            padding: 0 20px;          /* Espaço nas laterais */
+            align-items: center;
+
+            padding: 0 20px;
         }
 
-        /* Configuração da imagem da Logo */
+        /* LOGO */
         .logo img {
-            height: 50px;             /* Ajuste a altura desejada */
+            height: 50px;
             width: auto;
             display: block;
         }
+
+        /* SEGUNDA SEÇÃO: BLOCO DE FUNDO */
+        .secao-conteudo {
+            width: 100%;
+            background-color: #ffffff;
+
+            padding-top: 60px;
+            padding-bottom: 50px;
+        }
+
+        /* CONTEÚDO INTERNO */
+        .conteudo {
+            width: 100%;
+            max-width: 900px;
+
+            margin: 0 auto;
+            padding: 0 20px;
+
+            text-align: left;
+        }
+
+        /* MANCHETE */
+        .conteudo h1 {
+            font-size: 36px;
+            color: #1a1a1a;
+
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        /* SUBTÍTULO */
+        .conteudo h2 {
+            font-size: 21px;
+            font-weight: normal;
+            color: #666666;
+
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        /* PARÁGRAFOS */
+        .conteudo p {
+            font-size: 17px;
+            color: #444444;
+
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* REMOVE ESPAÇO EXTRA DO ÚLTIMO PARÁGRAFO */
+        .conteudo p:last-child {
+            margin-bottom: 0;
+        }
+
     </style>
 </head>
+
 <body>
 
-    <!-- PRIMEIRA SEÇÃO: FAIXA DO TOPO (HEADER) -->
+    <!-- PRIMEIRA SEÇÃO: BARRA SUPERIOR -->
     <header class="top-bar">
+
         <div class="logo">
             <img src="logo.png" alt="Logo da Empresa">
         </div>
+
     </header>
+
+
+    <!-- SEGUNDA SEÇÃO: BLOCO COM CONTEÚDO -->
+    <section class="secao-conteudo">
+
+        <div class="conteudo">
+
+            <!-- MANCHETE -->
+            <h1>Uma nova perspectiva sobre o futuro</h1>
+
+            <!-- SUBTÍTULO -->
+            <h2>
+                Descubra ideias, informações e conteúdos que fazem a diferença.
+            </h2>
+
+            <!-- TEXTO -->
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+            </p>
+
+            <p>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                anim id est laborum.
+            </p>
+
+        </div>
+
+    </section>
 
 </body>
 </html>
