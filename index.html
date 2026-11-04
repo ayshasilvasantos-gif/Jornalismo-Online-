@@ -87,9 +87,83 @@
             margin-bottom: 15px;
         }
 
-        /* REMOVE ESPAÇO EXTRA DO ÚLTIMO PARÁGRAFO */
         .conteudo p:last-child {
             margin-bottom: 0;
+        }
+
+        /* TERCEIRA SEÇÃO */
+        .secao-video {
+            width: 100%;
+            background-color: #ffffff;
+
+            padding-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        /* CONTEÚDO DA SEÇÃO DE VÍDEO */
+        .conteudo-video {
+            width: 100%;
+            max-width: 900px;
+
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* SUBTÍTULO DA TERCEIRA SEÇÃO */
+        .conteudo-video h2 {
+            font-size: 26px;
+            font-weight: normal;
+            color: #1a1a1a;
+
+            line-height: 1.4;
+            margin-bottom: 25px;
+        }
+
+        /* ESPAÇO DO VÍDEO */
+        .area-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+
+            background-color: #eeeeee;
+            border-radius: 8px;
+
+            overflow: hidden;
+        }
+
+        /* VÍDEO RESPONSIVO */
+        .area-video iframe,
+        .area-video video {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+            border: none;
+
+            object-fit: cover;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 600px) {
+
+            .conteudo h1 {
+                font-size: 29px;
+            }
+
+            .conteudo h2 {
+                font-size: 18px;
+            }
+
+            .conteudo-video h2 {
+                font-size: 22px;
+            }
+
+            .secao-conteudo {
+                padding-top: 40px;
+            }
+
+            .secao-video {
+                padding-top: 30px;
+            }
         }
 
     </style>
@@ -134,6 +208,46 @@
                 cupidatat non proident, sunt in culpa qui officia deserunt mollit
                 anim id est laborum.
             </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- TERCEIRA SEÇÃO: SUBTÍTULO E VÍDEO -->
+    <section class="secao-video">
+
+        <div class="conteudo-video">
+
+            <!-- ESPAÇO PARA O SUBTÍTULO -->
+            <h2>
+                <!-- Adicione seu subtítulo aqui -->
+            </h2>
+
+            <!-- ESPAÇO RESERVADO PARA O VÍDEO -->
+            <div class="area-video">
+
+                <!--
+                    PARA VÍDEO DO YOUTUBE:
+                    Substitua o comentário abaixo por:
+
+                    <iframe
+                        src="https://www.youtube.com/embed/ID_DO_VIDEO"
+                        title="Vídeo"
+                        allowfullscreen>
+                    </iframe>
+                -->
+
+                <!--
+                    PARA VÍDEO MP4:
+                    Use:
+
+                    <video controls>
+                        <source src="video.mp4" type="video/mp4">
+                    </video>
+                -->
+
+            </div>
 
         </div>
 
