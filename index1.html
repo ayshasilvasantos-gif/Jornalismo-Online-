@@ -7,11 +7,42 @@
     <link rel="icon" type="image/png" href="UEL-símbolo-cor.png">
 
     <style>
+        /* =========================================
+           CORES GERAIS DO SITE
+        ========================================= */
+
         :root {
             --green-theme: #006b33;
             --green-dark: #004d25;
             --text-color: #333;
+
+            /* =====================================
+               CORES DE FUNDO DAS SEÇÕES
+               ALTERE AS CORES AQUI
+            ===================================== */
+
+            --fundo-cabecalho: #006b33;
+
+            --fundo-apresentacao: #ffffff;
+
+            --fundo-conteudo-1: #ffffff;
+
+            --fundo-conteudo-2: #ffffff;
+
+            --fundo-conteudo-3: #ffffff;
+
+            --fundo-conteudo-4: #ffffff;
+
+            --fundo-conteudo-5: #ffffff;
+
+            --fundo-galeria: #f5f5f5;
+
+            --fundo-equipe: #f9f9f9;
         }
+
+        /* =========================================
+           RESET PADRÃO
+        ========================================= */
 
         * {
             box-sizing: border-box;
@@ -26,11 +57,20 @@
             overflow-x: hidden;
         }
 
+        /* =========================================
+           SEÇÃO 1 - CABEÇALHO
+        ========================================= */
+
+        .secao-cabecalho {
+            background-color: var(--fundo-cabecalho);
+            width: 100%;
+        }
+
         header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: var(--green-theme);
+            background-color: var(--fundo-cabecalho);
             height: 65px;
             display: flex;
             align-items: center;
@@ -119,10 +159,24 @@
             display: block;
         }
 
+        /* =========================================
+           CONTAINER INTERNO DAS SEÇÕES
+        ========================================= */
+
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
+        }
+
+        /* =========================================
+           SEÇÃO 2 - APRESENTAÇÃO
+           TÍTULO + TEXTO + VÍDEO PRINCIPAL
+        ========================================= */
+
+        .secao-apresentacao {
+            width: 100%;
+            background-color: var(--fundo-apresentacao);
         }
 
         .intro {
@@ -159,6 +213,10 @@
             border-radius: 12px;
         }
 
+        /* =========================================
+           SUBTÍTULOS
+        ========================================= */
+
         .subtitulo-divisor {
             display: flex;
             align-items: center;
@@ -182,6 +240,39 @@
             min-width: 20px;
         }
 
+        /* =========================================
+           SEÇÕES DE CONTEÚDO
+        ========================================= */
+
+        .secao-conteudo-1 {
+            width: 100%;
+            background-color: var(--fundo-conteudo-1);
+        }
+
+        .secao-conteudo-2 {
+            width: 100%;
+            background-color: var(--fundo-conteudo-2);
+        }
+
+        .secao-conteudo-3 {
+            width: 100%;
+            background-color: var(--fundo-conteudo-3);
+        }
+
+        .secao-conteudo-4 {
+            width: 100%;
+            background-color: var(--fundo-conteudo-4);
+        }
+
+        .secao-conteudo-5 {
+            width: 100%;
+            background-color: var(--fundo-conteudo-5);
+        }
+
+        /* =========================================
+           CARDS DE ÁUDIO
+        ========================================= */
+
         .audio-card {
             background: #f5f5f5;
             border-left: 5px solid var(--green-theme);
@@ -199,10 +290,21 @@
             width: 100%;
         }
 
+        /* =========================================
+           SEÇÃO 8 - GALERIA DE VÍDEOS
+        ========================================= */
+
+        .secao-shorts {
+            width: 100%;
+            background-color: var(--fundo-galeria);
+            padding: 50px 0;
+        }
+
         .titulo-galeria {
             text-align: center;
             font-family: Arial, sans-serif;
             margin-bottom: 25px;
+            padding: 0 20px;
         }
 
         .titulo-galeria h2 {
@@ -233,6 +335,10 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* =========================================
+           MODAL DOS VÍDEOS
+        ========================================= */
 
         .video-modal {
             display: none;
@@ -301,8 +407,13 @@
             right: 5%;
         }
 
+        /* =========================================
+           SEÇÃO 9 - EQUIPE
+        ========================================= */
+
         .secao-equipe {
-            background-color: #f9f9f9;
+            width: 100%;
+            background-color: var(--fundo-equipe);
             padding: 60px 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
@@ -374,7 +485,12 @@
             margin-bottom: 15px;
         }
 
+        /* =========================================
+           RESPONSIVIDADE PARA CELULARES
+        ========================================= */
+
         @media (max-width: 768px) {
+
             .menu-toggle {
                 display: flex;
             }
@@ -431,6 +547,18 @@
             .btn-next {
                 right: 2%;
             }
+
+            .intro h1 {
+                font-size: 2rem;
+            }
+
+            .intro p {
+                font-size: 1rem;
+            }
+
+            .titulo-equipe {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -439,259 +567,471 @@
 
 <div class="overlay" id="overlay"></div>
 
-<header>
-    <div class="logo-container">
-        <img src="UEL-horizontal-completa-branca.png" alt="Logo UEL">
-    </div>
-</header>
+<!-- =========================================
+     SEÇÃO 1 - BARRA SUPERIOR
+========================================= -->
 
-<main class="container">
+<section class="secao-cabecalho">
 
-    <section class="intro">
-        <h1>Titulo</h1>
-        <p>texto</p>
-    </section>
+    <header>
+        <div class="logo-container">
+            <img src="UEL-horizontal-completa-branca.png" alt="Logo UEL">
+        </div>
+    </header>
 
-    <section class="video-section">
-        <iframe
-            src="https://www.youtube.com/embed/mYz5Yhs22BY"
-            title="Vídeo do YouTube"
-            allowfullscreen>
-        </iframe>
-    </section>
+</section>
 
-    <div class="subtitulo-divisor">
-        <h2>subtitulo</h2>
-    </div>
 
-    <section class="intro">
-        <p>texto</p>
-    </section>
+<!-- =========================================
+     SEÇÃO 2 - TÍTULO, TEXTO E VÍDEO PRINCIPAL
+========================================= -->
 
-    <!-- PRIMEIRA FAIXA DE ÁUDIO -->
-    <section class="audio-card">
-        <h3>Titulo</h3>
-        <audio controls>
-            <source src="ENTREVISTA - RAFAEL MORAES (1).mp3" type="audio/mpeg">
-        </audio>
-    </section>
+<section class="secao-apresentacao">
 
-    <div class="subtitulo-divisor">
-        <h2>subtitulo</h2>
+    <div class="container">
+
+        <section class="intro">
+            <h1>Titulo</h1>
+            <p>texto</p>
+        </section>
+
+        <section class="video-section">
+            <iframe
+                src="https://www.youtube.com/embed/mYz5Yhs22BY"
+                title="Vídeo do YouTube"
+                allowfullscreen>
+            </iframe>
+        </section>
+
     </div>
 
-    <section class="intro">
-        <p>texto</p>
-    </section>
+</section>
 
-    <!-- SEGUNDA FAIXA DE ÁUDIO -->
-    <section class="audio-card">
-        <h3>Titulo</h3>
-        <audio controls>
-            <source src="SEÇÕES ELEITORAIS.mp3" type="audio/mpeg">
-        </audio>
-    </section>
 
-    <div class="subtitulo-divisor">
-        <h2>subtitulo</h2>
-    </div>
+<!-- =========================================
+     SEÇÃO 3 - PRIMEIRO SUBTÍTULO E ÁUDIO
+========================================= -->
 
-    <section class="intro">
-        <p>texto</p>
-    </section>
+<section class="secao-conteudo-1">
 
-    <div class="subtitulo-divisor">
-        <h2>subtitulo</h2>
-    </div>
+    <div class="container">
 
-    <section class="intro">
-        <p>texto</p>
-    </section>
-
-    <div class="subtitulo-divisor">
-        <h2>subtitulo</h2>
-    </div>
-
-    <section class="intro">
-        <p>texto</p>
-    </section>
-
-    <!-- GALERIA DE VÍDEOS -->
-    <section class="secao-shorts">
-
-        <div class="titulo-galeria">
+        <div class="subtitulo-divisor">
             <h2>subtitulo</h2>
         </div>
 
-        <div class="container-shorts">
+        <section class="intro">
+            <p>texto</p>
+        </section>
 
-            <div class="card-short js-video-card" style="cursor:pointer;">
-                <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
-                     data-video="https://www.youtube.com/embed/0su84ML6iG4"></div>
-                <iframe src="https://www.youtube.com/embed/0su84ML6iG4"
-                    title="Vídeo 1" allowfullscreen></iframe>
+        <!-- PRIMEIRA FAIXA DE ÁUDIO -->
+
+        <section class="audio-card">
+            <h3>Titulo</h3>
+
+            <audio controls>
+                <source src="ENTREVISTA - RAFAEL MORAES (1).mp3" type="audio/mpeg">
+            </audio>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 4 - SEGUNDO SUBTÍTULO E ÁUDIO
+========================================= -->
+
+<section class="secao-conteudo-2">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro">
+            <p>texto</p>
+        </section>
+
+        <!-- SEGUNDA FAIXA DE ÁUDIO -->
+
+        <section class="audio-card">
+            <h3>Titulo</h3>
+
+            <audio controls>
+                <source src="SEÇÕES ELEITORAIS.mp3" type="audio/mpeg">
+            </audio>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 5 - TERCEIRO BLOCO DE CONTEÚDO
+========================================= -->
+
+<section class="secao-conteudo-3">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro">
+            <p>texto</p>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 6 - QUARTO BLOCO DE CONTEÚDO
+========================================= -->
+
+<section class="secao-conteudo-4">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro">
+            <p>texto</p>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 7 - QUINTO BLOCO DE CONTEÚDO
+========================================= -->
+
+<section class="secao-conteudo-5">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro">
+            <p>texto</p>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 8 - GALERIA DE VÍDEOS
+========================================= -->
+
+<section class="secao-shorts">
+
+    <div class="titulo-galeria">
+        <h2>subtitulo</h2>
+    </div>
+
+    <div class="container-shorts">
+
+        <div class="card-short js-video-card" style="cursor:pointer;">
+
+            <div
+                style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
+                data-video="https://www.youtube.com/embed/0su84ML6iG4">
             </div>
 
-            <div class="card-short js-video-card" style="cursor:pointer;">
-                <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
-                     data-video="https://www.youtube.com/embed/Jhz_gKGFI_8"></div>
-                <iframe src="https://www.youtube.com/embed/Jhz_gKGFI_8"
-                    title="Vídeo 2" allowfullscreen></iframe>
-            </div>
-
-            <div class="card-short js-video-card" style="cursor:pointer;">
-                <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
-                     data-video="https://www.youtube.com/embed/UyADzeswpIk"></div>
-                <iframe src="https://www.youtube.com/embed/UyADzeswpIk"
-                    title="Vídeo 3" allowfullscreen></iframe>
-            </div>
-
-            <div class="card-short js-video-card" style="cursor:pointer;">
-                <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
-                     data-video="https://www.youtube.com/embed/9S0IGSxQdUc"></div>
-                <iframe src="https://www.youtube.com/embed/9S0IGSxQdUc"
-                    title="Vídeo 4" allowfullscreen></iframe>
-            </div>
-
-            <div class="card-short js-video-card" style="cursor:pointer;">
-                <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
-                     data-video="https://www.youtube.com/embed/dMOga2IWzBc"></div>
-                <iframe src="https://www.youtube.com/embed/dMOga2IWzBc"
-                    title="Vídeo 5" allowfullscreen></iframe>
-            </div>
+            <iframe
+                src="https://www.youtube.com/embed/0su84ML6iG4"
+                title="Vídeo 1"
+                allowfullscreen>
+            </iframe>
 
         </div>
 
-        <!-- MODAL DOS VÍDEOS -->
-        <div class="video-modal" id="videoModal">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <button class="nav-modal-btn btn-prev" id="prevVideo">&#10094;</button>
 
-            <div class="modal-content">
-                <iframe id="modalIframe" src="" allowfullscreen></iframe>
+        <div class="card-short js-video-card" style="cursor:pointer;">
+
+            <div
+                style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
+                data-video="https://www.youtube.com/embed/Jhz_gKGFI_8">
             </div>
 
-            <button class="nav-modal-btn btn-next" id="nextVideo">&#10095;</button>
+            <iframe
+                src="https://www.youtube.com/embed/Jhz_gKGFI_8"
+                title="Vídeo 2"
+                allowfullscreen>
+            </iframe>
+
         </div>
 
-    </section>
 
-</main>
+        <div class="card-short js-video-card" style="cursor:pointer;">
 
-<!-- EQUIPE -->
+            <div
+                style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
+                data-video="https://www.youtube.com/embed/UyADzeswpIk">
+            </div>
+
+            <iframe
+                src="https://www.youtube.com/embed/UyADzeswpIk"
+                title="Vídeo 3"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+        <div class="card-short js-video-card" style="cursor:pointer;">
+
+            <div
+                style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
+                data-video="https://www.youtube.com/embed/9S0IGSxQdUc">
+            </div>
+
+            <iframe
+                src="https://www.youtube.com/embed/9S0IGSxQdUc"
+                title="Vídeo 4"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+        <div class="card-short js-video-card" style="cursor:pointer;">
+
+            <div
+                style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;"
+                data-video="https://www.youtube.com/embed/dMOga2IWzBc">
+            </div>
+
+            <iframe
+                src="https://www.youtube.com/embed/dMOga2IWzBc"
+                title="Vídeo 5"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+    <!-- MODAL DOS VÍDEOS -->
+
+    <div class="video-modal" id="videoModal">
+
+        <button class="close-modal" id="closeModal">&times;</button>
+
+        <button class="nav-modal-btn btn-prev" id="prevVideo">
+            &#10094;
+        </button>
+
+        <div class="modal-content">
+            <iframe id="modalIframe" src="" allowfullscreen></iframe>
+        </div>
+
+        <button class="nav-modal-btn btn-next" id="nextVideo">
+            &#10095;
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 9 - EQUIPE
+========================================= -->
+
 <section class="secao-equipe">
+
     <div class="container-equipe">
 
         <h2 class="titulo-equipe">subtitulo</h2>
+
         <p class="subtitulo-equipe">subtitulo</p>
 
         <div class="grid-equipe">
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="Manuel.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="Eduardo.jpg.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="emanuele.webp" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="fernanda.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="igor.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="Julia de Souza.jpg.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="João.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="maria.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
+
             <div class="card-membro">
+
                 <div class="foto-membro">
                     <img src="aysha.jpeg" alt="Foto do Integrante">
                 </div>
+
                 <h3 class="nome-membro">Titulo</h3>
                 <p class="cargo-membro">subtitulo</p>
+
             </div>
 
         </div>
+
     </div>
+
 </section>
 
+
+<!-- =========================================
+     JAVASCRIPT - MODAL DOS VÍDEOS
+========================================= -->
+
 <script>
-    // MODAL DOS VÍDEOS
+
     const videoCards = document.querySelectorAll('.js-video-card div');
+
     const videoModal = document.getElementById('videoModal');
+
     const modalIframe = document.getElementById('modalIframe');
+
     const closeModal = document.getElementById('closeModal');
+
     const prevVideoBtn = document.getElementById('prevVideo');
+
     const nextVideoBtn = document.getElementById('nextVideo');
+
 
     const videoList = Array.from(videoCards).map(card =>
         card.getAttribute('data-video')
     );
 
+
     let currentVideoIndex = 0;
 
+
     function openVideo(index) {
+
         currentVideoIndex = index;
+
         modalIframe.src = videoList[currentVideoIndex] + "?autoplay=1";
+
         videoModal.classList.add('active');
+
         document.body.style.overflow = 'hidden';
+
     }
+
 
     function closeVideoModal() {
+
         videoModal.classList.remove('active');
+
         modalIframe.src = "";
+
         document.body.style.overflow = 'auto';
+
     }
 
+
     function nextVideo() {
+
         let nextIndex = currentVideoIndex + 1;
 
         if (nextIndex >= videoList.length) {
@@ -699,9 +1039,12 @@
         }
 
         openVideo(nextIndex);
+
     }
 
+
     function prevVideo() {
+
         let prevIndex = currentVideoIndex - 1;
 
         if (prevIndex < 0) {
@@ -709,29 +1052,45 @@
         }
 
         openVideo(prevIndex);
+
     }
 
+
     videoCards.forEach((card, index) => {
+
         card.addEventListener('click', () => openVideo(index));
+
     });
 
+
     closeModal.addEventListener('click', closeVideoModal);
+
     nextVideoBtn.addEventListener('click', nextVideo);
+
     prevVideoBtn.addEventListener('click', prevVideo);
 
+
     videoModal.addEventListener('click', (e) => {
+
         if (e.target === videoModal) {
             closeVideoModal();
         }
+
     });
 
+
     document.addEventListener('keydown', (e) => {
+
         if (!videoModal.classList.contains('active')) return;
 
         if (e.key === 'Escape') closeVideoModal();
+
         if (e.key === 'ArrowRight') nextVideo();
+
         if (e.key === 'ArrowLeft') prevVideo();
+
     });
+
 </script>
 
 </body>
