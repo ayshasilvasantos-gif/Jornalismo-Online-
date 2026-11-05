@@ -1,60 +1,69 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Titulo</title>
     <link rel="icon" type="image/png" href="UEL-símbolo-cor.png">
 
+    <!-- FONTE PADRÃO DO SITE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
+
         /* =========================================
            CORES GERAIS DO SITE
         ========================================= */
 
         :root {
-            --green-theme: #006b33;
-            --green-dark: #004d25;
-            --text-color: #333;
+            --green-theme: #087b50;
+            --green-dark: #005c3b;
+            --green-light: #e9f5ef;
 
-            /* =====================================
-               CORES DE FUNDO DAS SEÇÕES
-               ALTERE AS CORES AQUI
-            ===================================== */
+            --text-color: #171c19;
+            --text-secondary: #777e79;
 
             --fundo-cabecalho: #006b33;
-
             --fundo-apresentacao: #ffffff;
-
             --fundo-conteudo-1: #ffffff;
-
             --fundo-conteudo-2: #ffffff;
-
             --fundo-conteudo-3: #ffffff;
-
             --fundo-conteudo-4: #ffffff;
-
             --fundo-conteudo-5: #ffffff;
-
             --fundo-galeria: #f5f5f5;
-
-            --fundo-equipe: #f9f9f9;
+            --fundo-equipe: #f8faf8;
         }
 
         /* =========================================
-           RESET PADRÃO
+           RESET E FONTE GLOBAL
         ========================================= */
 
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'DM Sans', sans-serif;
             margin: 0;
             padding: 0;
             color: var(--text-color);
             background-color: #fff;
             overflow-x: hidden;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
         }
 
         /* =========================================
@@ -171,7 +180,6 @@
 
         /* =========================================
            SEÇÃO 2 - APRESENTAÇÃO
-           TÍTULO + TEXTO + VÍDEO PRINCIPAL
         ========================================= */
 
         .secao-apresentacao {
@@ -302,7 +310,6 @@
 
         .titulo-galeria {
             text-align: center;
-            font-family: Arial, sans-serif;
             margin-bottom: 25px;
             padding: 0 20px;
         }
@@ -310,7 +317,8 @@
         .titulo-galeria h2 {
             font-size: 28px;
             margin-bottom: 5px;
-            font-weight: bold;
+            font-weight: 800;
+            color: var(--green-theme);
         }
 
         .container-shorts {
@@ -409,80 +417,255 @@
 
         /* =========================================
            SEÇÃO 9 - EQUIPE
+           NOVO DESIGN
         ========================================= */
 
         .secao-equipe {
+            position: relative;
             width: 100%;
             background-color: var(--fundo-equipe);
-            padding: 60px 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 100px 7%;
+            overflow: hidden;
+            isolation: isolate;
             text-align: center;
         }
 
-        .container-equipe {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* ILUMINAÇÃO ANIMADA DO FUNDO */
+
+        .secao-equipe::before,
+        .secao-equipe::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(8, 123, 80, 0.07);
+            filter: blur(90px);
+            z-index: -1;
+            pointer-events: none;
+            animation: luzMovimento 12s ease-in-out infinite alternate;
         }
 
+        .secao-equipe::before {
+            top: 5%;
+            left: -150px;
+        }
+
+        .secao-equipe::after {
+            bottom: 0;
+            right: -150px;
+            animation-delay: -6s;
+        }
+
+        @keyframes luzMovimento {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(100px, 80px);
+            }
+        }
+
+        /* CONTAINER DA EQUIPE */
+
+        .container-equipe {
+            max-width: 1250px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CABEÇALHO DA EQUIPE */
+
         .titulo-equipe {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 10px;
+            display: inline-block;
+            color: var(--green-theme);
+            background: var(--green-light);
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0 0 20px;
+        }
+
+        .titulo-principal-equipe {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.15;
+            margin: 0 0 18px;
+            color: var(--text-color);
+        }
+
+        .titulo-principal-equipe span {
+            color: var(--green-theme);
         }
 
         .subtitulo-equipe {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 40px;
+            max-width: 650px;
+            margin: 0 auto 65px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
         }
+
+        /* GRID DOS INTEGRANTES */
 
         .grid-equipe {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            width: 100%;
             margin: 0 auto;
         }
 
+        /* CARD INDIVIDUAL */
+
         .card-membro {
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 30px 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.045);
+            border-radius: 18px;
+            padding: 12px;
+            overflow: hidden;
+
+            box-shadow: 0 8px 30px rgba(0,0,0,0.025);
+
+            opacity: 0;
+            transform: translateY(35px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s cubic-bezier(.2,.8,.2,1),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
+
+            animation: flutuarCard 6s ease-in-out infinite;
         }
 
-        .card-membro:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        .card-membro:nth-child(2n) {
+            animation-delay: -2s;
+        }
+
+        .card-membro:nth-child(3n) {
+            animation-delay: -4s;
+        }
+
+        .card-membro.visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes flutuarCard {
+            0%, 100% {
+                translate: 0 0;
+            }
+
+            50% {
+                translate: 0 -5px;
+            }
+        }
+
+        /* FOTO DOS INTEGRANTES */
+
+        .foto-membro {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 4.5;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #e8eee9;
         }
 
         .foto-membro img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid #eceff1;
+            display: block;
+            transition: transform 0.8s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .card-membro:hover .foto-membro img {
+            transform: scale(1.07);
+        }
+
+        /* INFORMAÇÕES */
+
+        .info-membro {
+            padding: 19px 10px 12px;
+            text-align: left;
         }
 
         .nome-membro {
-            font-size: 1.4rem;
-            color: #222;
-            margin-bottom: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0 0 5px;
         }
 
         .cargo-membro {
-            font-size: 0.95rem;
-            color: #007bff;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 400;
+            margin: 0 0 18px;
+        }
+
+        /* BOTÃO WHATSAPP */
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            width: 100%;
+            padding: 12px;
+
+            text-decoration: none;
+            color: var(--green-theme);
+            background: var(--green-light);
+
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: var(--green-theme);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-btn svg {
+            width: 17px;
+            height: 17px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* HOVER DO CARD */
+
+        .card-membro:hover {
+            box-shadow: 0 20px 45px rgba(0,70,40,0.10);
+            border-color: rgba(8,123,80,0.2);
+            z-index: 2;
+        }
+
+        /* =========================================
+           RESPONSIVIDADE PARA TABLETS
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .grid-equipe {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
         }
 
         /* =========================================
@@ -556,10 +739,73 @@
                 font-size: 1rem;
             }
 
-            .titulo-equipe {
-                font-size: 2rem;
+            .secao-equipe {
+                padding: 75px 5%;
             }
+
+            .grid-equipe {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+
+            .subtitulo-equipe {
+                margin-bottom: 40px;
+            }
+
+            .info-membro {
+                padding: 15px 5px 8px;
+            }
+
+            .nome-membro {
+                font-size: 15px;
+            }
+
+            .cargo-membro {
+                font-size: 12px;
+            }
+
+            .whatsapp-btn {
+                font-size: 11px;
+                padding: 11px 5px;
+            }
+
         }
+
+        /* CELULARES MUITO PEQUENOS */
+
+        @media (max-width: 380px) {
+
+            .grid-equipe {
+                grid-template-columns: 1fr;
+            }
+
+            .card-membro {
+                max-width: 300px;
+                width: 100%;
+                margin: auto;
+            }
+
+        }
+
+        /* ACESSIBILIDADE: REDUZIR MOVIMENTO */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+
+            .card-membro {
+                opacity: 1;
+                transform: none;
+            }
+
+        }
+
     </style>
 </head>
 
@@ -624,8 +870,6 @@
             <p>texto</p>
         </section>
 
-        <!-- PRIMEIRA FAIXA DE ÁUDIO -->
-
         <section class="audio-card">
             <h3>Titulo</h3>
 
@@ -654,8 +898,6 @@
         <section class="intro">
             <p>texto</p>
         </section>
-
-        <!-- SEGUNDA FAIXA DE ÁUDIO -->
 
         <section class="audio-card">
             <h3>Titulo</h3>
@@ -760,7 +1002,6 @@
 
         </div>
 
-
         <div class="card-short js-video-card" style="cursor:pointer;">
 
             <div
@@ -775,7 +1016,6 @@
             </iframe>
 
         </div>
-
 
         <div class="card-short js-video-card" style="cursor:pointer;">
 
@@ -792,7 +1032,6 @@
 
         </div>
 
-
         <div class="card-short js-video-card" style="cursor:pointer;">
 
             <div
@@ -807,7 +1046,6 @@
             </iframe>
 
         </div>
-
 
         <div class="card-short js-video-card" style="cursor:pointer;">
 
@@ -851,126 +1089,271 @@
 
 
 <!-- =========================================
-     SEÇÃO 9 - EQUIPE
+     SEÇÃO 9 - NOSSA EQUIPE
 ========================================= -->
 
 <section class="secao-equipe">
 
     <div class="container-equipe">
 
-        <h2 class="titulo-equipe">subtitulo</h2>
+        <!-- CABEÇALHO -->
 
-        <p class="subtitulo-equipe">subtitulo</p>
+        <h2 class="titulo-equipe">
+            Quem faz acontecer
+        </h2>
+
+        <h3 class="titulo-principal-equipe">
+            Conheça quem está<br>
+            <span>por trás de tudo.</span>
+        </h3>
+
+        <p class="subtitulo-equipe">
+            Pessoas que compartilham conhecimento,
+            dedicação e propósito para construir
+            resultados extraordinários.
+        </p>
+
+
+        <!-- GRID DA EQUIPE -->
 
         <div class="grid-equipe">
 
 
-            <div class="card-membro">
-
-                <div class="foto-membro">
-                    <img src="Manuel.jpeg" alt="Foto do Integrante">
-                </div>
-
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
-
-            </div>
-
+            <!-- INTEGRANTE 01 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="Eduardo.jpg.jpeg" alt="Foto do Integrante">
+                    <img src="Manuel.jpeg" alt="Foto do integrante 1">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn"
+                       href="https://wa.me/5500000000000"
+                       target="_blank"
+                       rel="noopener">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.2-3.6-8.4ZM12.2 21.7a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.3-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6 0 1.5 1.1 2.9 1.2 3.1.2.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/>
+                        </svg>
+
+                        WhatsApp
+                    </a>
+                </div>
             </div>
 
+
+            <!-- INTEGRANTE 02 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="emanuele.webp" alt="Foto do Integrante">
+                    <img src="Eduardo.jpg.jpeg" alt="Foto do integrante 2">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
             </div>
 
+
+            <!-- INTEGRANTE 03 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="fernanda.jpeg" alt="Foto do Integrante">
+                    <img src="emanuele.webp" alt="Foto do integrante 3">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
             </div>
 
+
+            <!-- INTEGRANTE 04 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="igor.jpeg" alt="Foto do Integrante">
+                    <img src="fernanda.jpeg" alt="Foto do integrante 4">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
             </div>
 
+
+            <!-- INTEGRANTE 05 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="Julia de Souza.jpg.jpeg" alt="Foto do Integrante">
+                    <img src="igor.jpeg" alt="Foto do integrante 5">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
             </div>
 
+
+            <!-- INTEGRANTE 06 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="João.jpeg" alt="Foto do Integrante">
+                    <img src="Julia de Souza.jpg.jpeg" alt="Foto do integrante 6">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
             </div>
 
+
+            <!-- INTEGRANTE 07 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="maria.jpeg" alt="Foto do Integrante">
+                    <img src="João.jpeg" alt="Foto do integrante 7">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
             </div>
 
+
+            <!-- INTEGRANTE 08 -->
 
             <div class="card-membro">
 
                 <div class="foto-membro">
-                    <img src="aysha.jpeg" alt="Foto do Integrante">
+                    <img src="maria.jpeg" alt="Foto do integrante 8">
                 </div>
 
-                <h3 class="nome-membro">Titulo</h3>
-                <p class="cargo-membro">subtitulo</p>
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
 
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
             </div>
+
+
+            <!-- INTEGRANTE 09 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="aysha.jpeg" alt="Foto do integrante 9">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- INTEGRANTE 10 - FOTO PROVISÓRIA -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="https://i.pravatar.cc/500?img=47" alt="Foto provisória do integrante 10">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Nome da pessoa</h3>
+                    <p class="cargo-membro">Função</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- INTEGRANTE 11 - FOTO PROVISÓRIA -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="https://i.pravatar.cc/500?img=44" alt="Foto provisória do integrante 11">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Nome da pessoa</h3>
+                    <p class="cargo-membro">Função</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- INTEGRANTE 12 - FOTO PROVISÓRIA -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="https://i.pravatar.cc/500?img=12" alt="Foto provisória do integrante 12">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Nome da pessoa</h3>
+                    <p class="cargo-membro">Função</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+
 
         </div>
 
@@ -1088,6 +1471,40 @@
         if (e.key === 'ArrowRight') nextVideo();
 
         if (e.key === 'ArrowLeft') prevVideo();
+
+    });
+
+
+    /* =========================================
+       ANIMAÇÃO DOS CARDS DA EQUIPE
+    ========================================= */
+
+    const cardsEquipe = document.querySelectorAll('.card-membro');
+
+    const observerEquipe = new IntersectionObserver((entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add('visivel');
+
+                observerEquipe.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.12
+    });
+
+
+    cardsEquipe.forEach((card, index) => {
+
+        card.style.transitionDelay = `${(index % 4) * 100}ms`;
+
+        observerEquipe.observe(card);
 
     });
 
