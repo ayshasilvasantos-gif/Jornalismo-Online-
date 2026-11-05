@@ -480,39 +480,118 @@ header {
 
 .audio-card {
     position: relative;
+    display: grid;
+    grid-template-columns: 155px minmax(0, 1fr);
+    align-items: center;
+    gap: 26px;
 
     background: #fff;
     border: 1px solid rgba(8,123,80,0.10);
-    border-left: 4px solid var(--green-theme);
+    border-radius: 18px;
 
-    padding: 25px 25px 23px;
-    border-radius: 14px;
-
+    padding: 18px;
     margin: 40px 0 10px;
 
     box-shadow: 0 8px 25px rgba(0,70,40,0.045);
 
     transition:
         transform 0.4s ease,
-        box-shadow 0.4s ease;
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
 }
 
 .audio-card:hover {
     transform: translateY(-5px);
+    border-color: rgba(8,123,80,0.22);
     box-shadow: 0 15px 35px rgba(0,70,40,0.09);
 }
 
-.audio-card h3 {
+/* FOTO DA PESSOA ENTREVISTADA */
+.audio-foto {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 13px;
+    background: #e8eee9;
+}
+
+.audio-foto img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.audio-card:hover .audio-foto img {
+    transform: scale(1.055);
+}
+
+/* INFORMAÇÕES E PLAYER */
+.audio-conteudo {
+    min-width: 0;
+}
+
+.audio-identificacao {
+    display: inline-block;
+    margin-bottom: 9px;
     color: var(--green-theme);
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 18px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.audio-card h3 {
+    color: var(--text-color);
+    font-size: clamp(18px, 2.2vw, 23px);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
 }
 
 .audio-card audio {
     display: block;
     width: 100%;
     accent-color: var(--green-theme);
+}
+
+/* Em telas menores, a foto fica ao lado do título e do player,
+   preservando o formato compacto do card. */
+@media (max-width: 520px) {
+    .audio-card {
+        grid-template-columns: 105px minmax(0, 1fr);
+        gap: 15px;
+        padding: 12px;
+        margin-top: 30px;
+    }
+
+    .audio-card h3 {
+        font-size: 16px;
+        margin-bottom: 14px;
+    }
+
+    .audio-identificacao {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .audio-card audio {
+        height: 38px;
+    }
+}
+
+@media (max-width: 360px) {
+    .audio-card {
+        grid-template-columns: 1fr;
+    }
+
+    .audio-foto {
+        aspect-ratio: 16 / 9;
+        max-height: 180px;
+    }
 }
 
 /* =========================================
@@ -1244,11 +1323,20 @@ header {
 
         <section class="audio-card reveal">
 
-            <h3>Titulo</h3>
+            <div class="audio-foto">
+                <!-- TROQUE pelo nome do arquivo da foto do Rafael -->
+                <img src="foto-rafael.jpg" alt="Foto de Rafael Moraes, entrevistado">
+            </div>
 
-            <audio controls>
-                <source src="ENTREVISTA - RAFAEL MORAES (1).mp3" type="audio/mpeg">
-            </audio>
+            <div class="audio-conteudo">
+                <span class="audio-identificacao">Entrevista</span>
+                <h3>Titulo</h3>
+
+                <audio controls>
+                    <source src="ENTREVISTA - RAFAEL MORAES (1).mp3" type="audio/mpeg">
+                    Seu navegador não consegue reproduzir este áudio.
+                </audio>
+            </div>
 
         </section>
 
@@ -1319,11 +1407,20 @@ header {
 
         <section class="audio-card reveal">
 
-            <h3>Titulo</h3>
+            <div class="audio-foto">
+                <!-- TROQUE pelo nome do arquivo da foto da pessoa entrevistada -->
+                <img src="foto-entrevistado.jpg" alt="Foto da pessoa entrevistada">
+            </div>
 
-            <audio controls>
-                <source src="SEÇÕES ELEITORAIS.mp3" type="audio/mpeg">
-            </audio>
+            <div class="audio-conteudo">
+                <span class="audio-identificacao">Entrevista</span>
+                <h3>Titulo</h3>
+
+                <audio controls>
+                    <source src="SEÇÕES ELEITORAIS.mp3" type="audio/mpeg">
+                    Seu navegador não consegue reproduzir este áudio.
+                </audio>
+            </div>
 
         </section>
 
