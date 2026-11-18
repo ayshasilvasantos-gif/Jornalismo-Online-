@@ -1,257 +1,2007 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Meu Site</title>
+<title>Titulo</title>
+<link rel="icon" type="image/png" href="UEL-símbolo-cor.png">
 
-    <style>
-        /* RESET PADRÃO */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+<style>
 
-        /* PRIMEIRA SEÇÃO: BARRA SUPERIOR */
-        .top-bar {
-            width: 100%;
-            height: 65px;
-            background-color: #1a1a1a;
+/* =========================================
+   1. IDENTIDADE VISUAL
+========================================= */
 
-            display: flex;
-            align-items: center;
+:root {
+    /* PALETA DE VERDES: tons escuros, médios e suaves */
+    --green-theme: #087b50;
+    --green-dark: #004b35;
+    --green-deep: #003d2b;
+    --green-forest: #075e45;
+    --green-original: #006b33;
+    --green-mid: #16805b;
+    --green-accent: #2b8a68;
+    --green-light: #e1f0e7;
+    --green-pale: #f1f7f3;
+    --green-mist: #eaf2ed;
 
-            padding: 0 20px;
-        }
+    --text-color: #17221c;
+    --text-secondary: #68766e;
 
-        /* LOGO */
-        .logo img {
-            height: 50px;
-            width: auto;
-            display: block;
-        }
+    --fundo-cabecalho: var(--green-dark);
+    --fundo-apresentacao: #ffffff;
+    --fundo-conteudo-1: #ffffff;
+    --fundo-conteudo-2: #f3f8f4;
+    --fundo-conteudo-3: #ffffff;
+    --fundo-conteudo-4: #edf5f0;
+    --fundo-conteudo-5: #ffffff;
+    --fundo-galeria: #eaf2ed;
+    --fundo-equipe: #f3f8f4;
 
-        /* SEGUNDA SEÇÃO: BLOCO DE FUNDO */
-        .secao-conteudo {
-            width: 100%;
-            background-color: #ffffff;
+    --radius: 18px;
+    --shadow: 0 12px 35px rgba(0, 65, 40, 0.07);
+}
 
-            padding-top: 60px;
-            padding-bottom: 50px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* CONTEÚDO INTERNO */
-        .conteudo {
-            width: 100%;
-            max-width: 900px;
+html {
+    scroll-behavior: smooth;
+}
 
-            margin: 0 auto;
-            padding: 0 20px;
+body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-color);
+    background: #fff;
+    overflow-x: hidden;
+}
 
-            text-align: left;
-        }
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
 
-        /* MANCHETE */
-        .conteudo h1 {
-            font-size: 36px;
-            color: #1a1a1a;
+img {
+    max-width: 100%;
+}
 
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
+/* =========================================
+   2. ANIMAÇÕES GLOBAIS
+========================================= */
 
-        /* SUBTÍTULO */
-        .conteudo h2 {
-            font-size: 21px;
-            font-weight: normal;
-            color: #666666;
+@keyframes floatSoft {
+    0%, 100% {
+        transform: translateY(0);
+    }
 
-            margin-bottom: 25px;
-            line-height: 1.4;
-        }
+    50% {
+        transform: translateY(-8px);
+    }
+}
 
-        /* PARÁGRAFOS */
-        .conteudo p {
-            font-size: 17px;
-            color: #444444;
+@keyframes ambientMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
 
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
+    50% {
+        transform: translate(35px, 25px) scale(1.08);
+    }
 
-        .conteudo p:last-child {
-            margin-bottom: 0;
-        }
+    100% {
+        transform: translate(-15px, 45px) scale(0.95);
+    }
+}
 
-        /* TERCEIRA SEÇÃO */
-        .secao-video {
-            width: 100%;
-            background-color: #ffffff;
+@keyframes shine {
+    0% {
+        background-position: -200% center;
+    }
 
-            padding-top: 40px;
-            padding-bottom: 60px;
-        }
+    100% {
+        background-position: 200% center;
+    }
+}
 
-        /* CONTEÚDO DA SEÇÃO DE VÍDEO */
-        .conteudo-video {
-            width: 100%;
-            max-width: 900px;
+/* ELEMENTOS QUE APARECEM AO ROLAR */
 
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
 
-        /* SUBTÍTULO DA TERCEIRA SEÇÃO */
-        .conteudo-video h2 {
-            font-size: 26px;
-            font-weight: normal;
-            color: #1a1a1a;
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(.2,.8,.2,1);
+}
 
-            line-height: 1.4;
-            margin-bottom: 25px;
-        }
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        /* ESPAÇO DO VÍDEO */
-        .area-video {
-            width: 100%;
-            aspect-ratio: 16 / 9;
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-35px);
 
-            background-color: #eeeeee;
-            border-radius: 8px;
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
 
-            overflow: hidden;
-        }
+.reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
 
-        /* VÍDEO RESPONSIVO */
-        .area-video iframe,
-        .area-video video {
-            width: 100%;
-            height: 100%;
+.reveal-right {
+    opacity: 0;
+    transform: translateX(35px);
 
-            display: block;
-            border: none;
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
 
-            object-fit: cover;
-        }
+.reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 600px) {
+/* =========================================
+   3. CABEÇALHO
+========================================= */
 
-            .conteudo h1 {
-                font-size: 29px;
-            }
+.secao-cabecalho {
+    width: 100%;
+    background: var(--fundo-cabecalho);
+}
 
-            .conteudo h2 {
-                font-size: 18px;
-            }
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-            .conteudo-video h2 {
-                font-size: 22px;
-            }
+    width: 100%;
+    height: 72px;
 
-            .secao-conteudo {
-                padding-top: 40px;
-            }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-            .secao-video {
-                padding-top: 30px;
-            }
-        }
+    padding: 0 6%;
 
-    </style>
+    background: rgba(0, 75, 53, 0.97);
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 3px 20px rgba(0,0,0,0.12);
+}
+
+.logo-container {
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    height: 100%;
+    width: auto;
+    transition: transform 0.4s ease;
+}
+
+.logo-container:hover img {
+    transform: scale(1.04);
+}
+
+.header-info {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    padding: 10px 15px;
+    border-radius: 30px;
+
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    background: rgba(255,255,255,0.17);
+    transform: translateY(-2px);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: 30px;
+    height: 25px;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100;
+}
+
+.menu-toggle span {
+    width: 30px;
+    height: 3px;
+    background: white;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1050;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* =========================================
+   4. CONTAINERS GERAIS
+========================================= */
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 75px 25px;
+}
+
+.secao-conteudo-1,
+.secao-conteudo-2,
+.secao-conteudo-3,
+.secao-conteudo-4,
+.secao-conteudo-5 {
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================================
+   5. APRESENTAÇÃO PRINCIPAL
+========================================= */
+
+.secao-apresentacao {
+    position: relative;
+    width: 100%;
+    background: var(--fundo-apresentacao);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.secao-apresentacao::before {
+    content: "";
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -180px;
+    right: -180px;
+
+    border-radius: 50%;
+    background: rgba(7,94,69,0.08);
+    filter: blur(80px);
+
+    z-index: -1;
+
+    animation: ambientMove 15s ease-in-out infinite alternate;
+}
+
+.intro {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.intro h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    color: var(--green-forest);
+    margin-bottom: 25px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1.8px;
+}
+
+.intro p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #555f59;
+    text-align: justify;
+    word-break: break-word;
+}
+
+/* VÍDEO PRINCIPAL */
+
+.video-section {
+    position: relative;
+    margin-top: 45px;
+    width: 100%;
+    padding: 10px;
+
+    background: white;
+    border: 1px solid rgba(8,123,80,0.10);
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+
+    animation: floatSoft 7s ease-in-out infinite;
+}
+
+.video-section::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 25px;
+    border: 1px solid rgba(8,123,80,0.10);
+    pointer-events: none;
+}
+
+.video-section iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 14px;
+}
+
+/* =========================================
+   6. DIVISORES DE SUBTÍTULOS
+========================================= */
+
+.subtitulo-divisor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin: 0 0 30px;
+    width: 100%;
+}
+
+/* Pequeno traço verde no lugar das linhas laterais */
+.subtitulo-divisor::before {
+    content: "";
+    display: block;
+    width: 42px;
+    height: 4px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--green-deep), var(--green-accent));
+}
+
+.subtitulo-divisor h2 {
+    color: var(--green-forest);
+    font-size: clamp(21px, 3vw, 27px);
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    line-height: 1.3;
+}
+
+.subtitulo-divisor::after {
+    display: none;
+}
+
+/* =========================================
+   7. SEÇÕES DE CONTEÚDO
+========================================= */
+
+.secao-conteudo-1 {
+    background: var(--fundo-conteudo-1);
+}
+
+.secao-conteudo-2 {
+    background: var(--fundo-conteudo-2);
+}
+
+.secao-conteudo-3 {
+    background: var(--fundo-conteudo-3);
+}
+
+.secao-conteudo-4 {
+    background: var(--fundo-conteudo-4);
+}
+
+.secao-conteudo-5 {
+    background: var(--fundo-conteudo-5);
+}
+
+/* DETALHE DECORATIVO */
+
+.secao-conteudo-2::before,
+.secao-conteudo-4::before {
+    content: "";
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -180px;
+    top: 20%;
+
+    background: rgba(7,94,69,0.06);
+    border-radius: 50%;
+    filter: blur(70px);
+
+    animation: ambientMove 14s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+/* TEXTO DAS SEÇÕES */
+
+.secao-conteudo-1 .intro,
+.secao-conteudo-2 .intro,
+.secao-conteudo-3 .intro,
+.secao-conteudo-4 .intro,
+.secao-conteudo-5 .intro {
+    position: relative;
+    z-index: 1;
+}
+
+.secao-conteudo-1 .intro p,
+.secao-conteudo-2 .intro p,
+.secao-conteudo-3 .intro p,
+.secao-conteudo-4 .intro p,
+.secao-conteudo-5 .intro p {
+    line-height: 1.95;
+}
+
+/* =========================================
+   8. CARDS DE ÁUDIO
+========================================= */
+
+.audio-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 155px minmax(0, 1fr);
+    align-items: center;
+    gap: 26px;
+
+    background: #fff;
+    border: 1px solid rgba(7,94,69,0.13);
+    border-left: 4px solid var(--green-mid);
+    border-radius: 18px;
+
+    padding: 18px;
+    margin: 40px 0 10px;
+
+    box-shadow: 0 8px 25px rgba(0,70,40,0.045);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.audio-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(7,94,69,0.28);
+    box-shadow: 0 15px 35px rgba(0,70,40,0.09);
+}
+
+/* FOTO DA PESSOA ENTREVISTADA */
+.audio-foto {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 13px;
+    background: #e8eee9;
+}
+
+.audio-foto img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.audio-card:hover .audio-foto img {
+    transform: scale(1.055);
+}
+
+/* INFORMAÇÕES E PLAYER */
+.audio-conteudo {
+    min-width: 0;
+}
+
+.audio-identificacao {
+    display: inline-block;
+    margin-bottom: 9px;
+    color: var(--green-theme);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.audio-card h3 {
+    color: var(--text-color);
+    font-size: clamp(18px, 2.2vw, 23px);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+}
+
+.audio-card audio {
+    display: block;
+    width: 100%;
+    accent-color: var(--green-theme);
+}
+
+/* Em telas menores, a foto fica ao lado do título e do player,
+   preservando o formato compacto do card. */
+@media (max-width: 520px) {
+    .audio-card {
+        grid-template-columns: 105px minmax(0, 1fr);
+        gap: 15px;
+        padding: 12px;
+        margin-top: 30px;
+    }
+
+    .audio-card h3 {
+        font-size: 16px;
+        margin-bottom: 14px;
+    }
+
+    .audio-identificacao {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .audio-card audio {
+        height: 38px;
+    }
+}
+
+@media (max-width: 360px) {
+    .audio-card {
+        grid-template-columns: 1fr;
+    }
+
+    .audio-foto {
+        aspect-ratio: 16 / 9;
+        max-height: 180px;
+    }
+}
+
+/* =========================================
+   9. GALERIA DE VÍDEOS
+========================================= */
+
+.secao-shorts {
+    position: relative;
+    width: 100%;
+    background: var(--fundo-galeria);
+
+    padding: 85px 0;
+
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.secao-shorts::before {
+    content: "";
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    left: -200px;
+    top: -150px;
+
+    background: rgba(7,94,69,0.09);
+    border-radius: 50%;
+    filter: blur(90px);
+
+    z-index: -1;
+    animation: ambientMove 16s ease-in-out infinite alternate;
+}
+
+.titulo-galeria {
+    text-align: center;
+    margin-bottom: 45px;
+    padding: 0 20px;
+}
+
+.titulo-galeria span {
+    display: inline-block;
+
+    color: var(--green-theme);
+    background: var(--green-pale);
+
+    padding: 8px 16px;
+    border-radius: 30px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    margin-bottom: 15px;
+}
+
+.titulo-galeria h2 {
+    font-size: clamp(27px, 4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text-color);
+}
+
+/* GRID DE VÍDEOS */
+
+.container-shorts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 25px;
+}
+
+.card-short {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+
+    aspect-ratio: 9 / 16;
+
+    background: #dfe8e2;
+    border: 1px solid rgba(8,123,80,0.10);
+
+    box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.5s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.5s ease;
+}
+
+.card-short:hover {
+    transform: translateY(-9px) scale(1.015);
+    box-shadow: 0 20px 35px rgba(0,70,40,0.14);
+}
+
+.card-short iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none;
+}
+
+/* =========================================
+   10. MODAL DOS VÍDEOS
+========================================= */
+
+.video-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(0,35,25,0.95);
+    backdrop-filter: blur(12px);
+
+    z-index: 2000;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+}
+
+.video-modal.active {
+    display: flex;
+    animation: modalFade 0.35s ease forwards;
+}
+
+@keyframes modalFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    position: relative;
+
+    width: 90%;
+    max-width: 400px;
+
+    aspect-ratio: 9 / 16;
+
+    background: #000;
+    border-radius: 18px;
+    overflow: hidden;
+
+    box-shadow: 0 20px 70px rgba(0,0,0,0.4);
+
+    animation: modalScale 0.4s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes modalScale {
+    from {
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    color: white;
+    font-size: 38px;
+    font-weight: 400;
+
+    cursor: pointer;
+    z-index: 2100;
+
+    background: rgba(255,255,255,0.12);
+    border: none;
+    border-radius: 50%;
+
+    width: 45px;
+    height: 45px;
+
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    background: var(--green-forest);
+    transform: rotate(90deg);
+}
+
+.nav-modal-btn {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+
+    font-size: 22px;
+    padding: 15px 20px;
+
+    cursor: pointer;
+    border-radius: 50%;
+
+    z-index: 2100;
+
+    transition: all 0.3s ease;
+}
+
+.nav-modal-btn:hover {
+    background: var(--green-forest);
+}
+
+.btn-prev {
+    left: 5%;
+}
+
+.btn-next {
+    right: 5%;
+}
+
+/* =========================================
+   11. EQUIPE
+========================================= */
+
+.secao-equipe {
+    position: relative;
+    width: 100%;
+
+    background: var(--fundo-equipe);
+
+    padding: 100px 7%;
+
+    overflow: hidden;
+    isolation: isolate;
+    text-align: center;
+}
+
+.secao-equipe::before,
+.secao-equipe::after {
+    content: "";
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+    background: rgba(7,94,69,0.09);
+    filter: blur(90px);
+
+    z-index: -1;
+    pointer-events: none;
+
+    animation: ambientMove 12s ease-in-out infinite alternate;
+}
+
+.secao-equipe::before {
+    top: 5%;
+    left: -150px;
+}
+
+.secao-equipe::after {
+    bottom: 0;
+    right: -150px;
+    animation-delay: -6s;
+}
+
+.container-equipe {
+    max-width: 1250px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.titulo-equipe {
+    display: inline-block;
+
+    color: var(--green-theme);
+    background: var(--green-pale);
+
+    padding: 9px 18px;
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+}
+
+.titulo-principal-equipe {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.15;
+
+    margin-bottom: 18px;
+    color: var(--text-color);
+}
+
+.titulo-principal-equipe span {
+    color: var(--green-theme);
+}
+
+.subtitulo-equipe {
+    max-width: 650px;
+    margin: 0 auto 65px;
+
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.grid-equipe {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+
+    width: 100%;
+    margin: auto;
+}
+
+.card-membro {
+    position: relative;
+
+    background: #fff;
+    border: 1px solid rgba(7,94,69,0.09);
+    border-top: 3px solid var(--green-light);
+    border-radius: 18px;
+
+    padding: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.025);
+
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+
+    animation: floatSoft 6s ease-in-out infinite;
+}
+
+.card-membro:nth-child(2n) {
+    animation-delay: -2s;
+}
+
+.card-membro:nth-child(3n) {
+    animation-delay: -4s;
+}
+
+.card-membro.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-membro:hover {
+    box-shadow: 0 20px 45px rgba(0,70,40,0.10);
+    border-color: rgba(7,94,69,0.25);
+    border-top-color: var(--green-mid);
+    z-index: 2;
+}
+
+.foto-membro {
+    position: relative;
+    width: 100%;
+
+    aspect-ratio: 4 / 4.5;
+
+    overflow: hidden;
+    border-radius: 12px;
+
+    background: #e8eee9;
+}
+
+.foto-membro img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.8s cubic-bezier(.2,.8,.2,1);
+}
+
+.card-membro:hover .foto-membro img {
+    transform: scale(1.07);
+}
+
+.info-membro {
+    padding: 19px 10px 12px;
+    text-align: left;
+}
+
+.nome-membro {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.cargo-membro {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+    padding: 12px;
+
+    text-decoration: none;
+    color: var(--green-theme);
+    background: var(--green-pale);
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    background: var(--green-dark);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.whatsapp-btn svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   12. RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .grid-equipe {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .container-shorts {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 750px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    header {
+        height: 65px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header-info {
+        position: fixed;
+
+        right: -100%;
+        top: 0;
+
+        height: 100vh;
+        width: 260px;
+
+        background: var(--green-dark);
+
+        flex-direction: column;
+        padding: 80px 20px;
+
+        transition: right 0.4s ease-in-out;
+        z-index: 1060;
+    }
+
+    .header-info.active {
+        right: 0;
+    }
+
+    .contact-button {
+        font-size: 14px;
+        padding: 15px;
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        padding: 55px 22px;
+    }
+
+    .intro h1 {
+        font-size: 32px;
+    }
+
+    .intro p {
+        font-size: 15px;
+    }
+
+    .video-section {
+        margin-top: 30px;
+        padding: 7px;
+    }
+
+    .subtitulo-divisor {
+        margin-bottom: 25px;
+    }
+
+    .audio-card {
+        padding: 20px 15px;
+        margin-top: 30px;
+    }
+
+    .secao-shorts {
+        padding: 65px 0;
+    }
+
+    .container-shorts {
+        display: flex;
+
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+
+        gap: 15px;
+        padding: 10px 25px 20px;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .card-short {
+        display: block !important;
+        flex: 0 0 75%;
+        scroll-snap-align: center;
+    }
+
+    .secao-equipe {
+        padding: 75px 5%;
+    }
+
+    .grid-equipe {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .subtitulo-equipe {
+        margin-bottom: 40px;
+    }
+
+    .info-membro {
+        padding: 15px 5px 8px;
+    }
+
+    .nome-membro {
+        font-size: 15px;
+    }
+
+    .cargo-membro {
+        font-size: 12px;
+    }
+
+    .whatsapp-btn {
+        font-size: 11px;
+        padding: 11px 5px;
+    }
+
+    .nav-modal-btn {
+        padding: 10px 14px;
+        font-size: 17px;
+    }
+
+    .btn-prev {
+        left: 2%;
+    }
+
+    .btn-next {
+        right: 2%;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .grid-equipe {
+        grid-template-columns: 1fr;
+    }
+
+    .card-membro {
+        max-width: 300px;
+        width: 100%;
+        margin: auto;
+    }
+
+}
+
+/* =========================================
+   13. ACESSIBILIDADE
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right {
+        opacity: 1;
+        transform: none;
+    }
+
+    .card-membro {
+        opacity: 1;
+        transform: none;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- PRIMEIRA SEÇÃO: BARRA SUPERIOR -->
-    <header class="top-bar">
+<div class="overlay" id="overlay"></div>
 
-        <div class="logo">
-            <img src="logo.png" alt="Logo da Empresa">
+<!-- =========================================
+     SEÇÃO 1 - CABEÇALHO
+========================================= -->
+
+<section class="secao-cabecalho">
+
+    <header>
+
+        <div class="logo-container">
+            <img src="UEL-horizontal-completa-branca.png" alt="Logo UEL">
         </div>
 
     </header>
 
+</section>
 
-    <!-- SEGUNDA SEÇÃO: BLOCO COM CONTEÚDO -->
-    <section class="secao-conteudo">
 
-        <div class="conteudo">
+<!-- =========================================
+     SEÇÃO 2 - APRESENTAÇÃO
+========================================= -->
 
-            <!-- MANCHETE -->
-            <h1>Uma nova perspectiva sobre o futuro</h1>
+<section class="secao-apresentacao">
 
-            <!-- SUBTÍTULO -->
-            <h2>
-                Descubra ideias, informações e conteúdos que fazem a diferença.
-            </h2>
+    <div class="container">
 
-            <!-- TEXTO -->
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-            </p>
+        <section class="intro reveal">
 
-            <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                anim id est laborum.
-            </p>
+            <h1>Titulo</h1>
+
+            <p>texto</p>
+
+        </section>
+
+        <section class="video-section reveal">
+
+            <iframe
+                src="https://www.youtube.com/embed/mYz5Yhs22BY"
+                title="Vídeo do YouTube"
+                allowfullscreen>
+            </iframe>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 3 - PRIMEIRO CONTEÚDO
+========================================= -->
+
+<section class="secao-conteudo-1">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor reveal">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro reveal">
+            <p>texto</p>
+        </section>
+
+        <section class="audio-card reveal">
+
+            <div class="audio-foto">
+                <!-- TROQUE pelo nome do arquivo da foto do Rafael -->
+                <img src="foto-rafael.jpg" alt="Foto de Rafael Moraes, entrevistado">
+            </div>
+
+            <div class="audio-conteudo">
+                <span class="audio-identificacao">Entrevista</span>
+                <h3>Titulo</h3>
+
+                <audio controls>
+                    <source src="ENTREVISTA RADIO, PORTAL VERDADE.mp3.mpeg" type="audio/mpeg">
+                </audio>
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 4 - QUARTO CONTEÚDO
+     (ANTES ERA A SEÇÃO 6)
+========================================= -->
+
+<section class="secao-conteudo-4">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor reveal">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro reveal">
+            <p>texto</p>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 5 - TERCEIRO CONTEÚDO
+========================================= -->
+
+<section class="secao-conteudo-3">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor reveal">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro reveal">
+            <p>texto</p>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 6 - SEGUNDO CONTEÚDO
+     (ANTES ERA A SEÇÃO 4)
+========================================= -->
+
+<section class="secao-conteudo-2">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor reveal">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro reveal">
+            <p>texto</p>
+        </section>
+
+        <section class="audio-card reveal">
+
+            <div class="audio-foto">
+                <!-- TROQUE pelo nome do arquivo da foto da pessoa entrevistada -->
+                <img src="foto-entrevistado.jpg" alt="Foto da pessoa entrevistada">
+            </div>
+
+            <div class="audio-conteudo">
+                <span class="audio-identificacao">Entrevista</span>
+                <h3>Titulo</h3>
+
+              <audio controls>
+    <source src="https://drive.google.com/uc?export=download&id=1X3nNqPJBFIWHOpOUxaPa4ZPN0Am1DoL4" type="audio/mpeg">
+    Seu navegador não consegue reproduzir este áudio.
+</audio>
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 7 - QUINTO CONTEÚDO
+========================================= -->
+
+<section class="secao-conteudo-5">
+
+    <div class="container">
+
+        <div class="subtitulo-divisor reveal">
+            <h2>subtitulo</h2>
+        </div>
+
+        <section class="intro reveal">
+            <p>texto</p>
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 8 - GALERIA DE VÍDEOS
+     APENAS 4 VÍDEOS
+========================================= -->
+
+<section class="secao-shorts">
+
+    <div class="titulo-galeria reveal">
+
+        <span>Galeria</span>
+
+        <h2>subtitulo</h2>
+
+    </div>
+
+    <div class="container-shorts">
+
+        <!-- VÍDEO 1 -->
+
+        <div class="card-short js-video-card reveal">
+
+            <div
+                style="position:absolute;inset:0;z-index:2;"
+                data-video="https://www.youtube.com/embed/0su84ML6iG4">
+            </div>
+
+            <iframe
+                src="https://www.youtube.com/embed/0su84ML6iG4"
+                title="Vídeo 1"
+                allowfullscreen>
+            </iframe>
 
         </div>
 
-    </section>
+
+        <!-- VÍDEO 2 -->
+
+        <div class="card-short js-video-card reveal">
+
+            <div
+                style="position:absolute;inset:0;z-index:2;"
+                data-video="https://www.youtube.com/embed/Jhz_gKGFI_8">
+            </div>
+
+            <iframe
+                src="https://www.youtube.com/embed/Jhz_gKGFI_8"
+                title="Vídeo 2"
+                allowfullscreen>
+            </iframe>
+
+        </div>
 
 
-    <!-- TERCEIRA SEÇÃO: SUBTÍTULO E VÍDEO -->
-    <section class="secao-video">
+        <!-- VÍDEO 3 -->
 
-        <div class="conteudo-video">
+        <div class="card-short js-video-card reveal">
 
-            <!-- ESPAÇO PARA O SUBTÍTULO -->
-            <h2>
-                <!-- Adicione seu subtítulo aqui -->
-            </h2>
+            <div
+                style="position:absolute;inset:0;z-index:2;"
+                data-video="https://www.youtube.com/embed/UyADzeswpIk">
+            </div>
 
-            <!-- ESPAÇO RESERVADO PARA O VÍDEO -->
-            <div class="area-video">
+            <iframe
+                src="https://www.youtube.com/embed/UyADzeswpIk"
+                title="Vídeo 3"
+                allowfullscreen>
+            </iframe>
 
-                <!--
-                    PARA VÍDEO DO YOUTUBE:
-                    Substitua o comentário abaixo por:
+        </div>
 
-                    <iframe
-                        src="https://www.youtube.com/embed/ID_DO_VIDEO"
-                        title="Vídeo"
-                        allowfullscreen>
-                    </iframe>
-                -->
 
-                <!--
-                    PARA VÍDEO MP4:
-                    Use:
+        <!-- VÍDEO 4 -->
 
-                    <video controls>
-                        <source src="video.mp4" type="video/mp4">
-                    </video>
-                -->
+        <div class="card-short js-video-card reveal">
+
+            <div
+                style="position:absolute;inset:0;z-index:2;"
+                data-video="https://www.youtube.com/embed/9S0IGSxQdUc">
+            </div>
+
+            <iframe
+                src="https://www.youtube.com/embed/9S0IGSxQdUc"
+                title="Vídeo 4"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+    <!-- MODAL DOS VÍDEOS -->
+
+    <div class="video-modal" id="videoModal">
+
+        <button class="close-modal" id="closeModal">&times;</button>
+
+        <button class="nav-modal-btn btn-prev" id="prevVideo">
+            &#10094;
+        </button>
+
+        <div class="modal-content">
+
+            <iframe
+                id="modalIframe"
+                src=""
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <button class="nav-modal-btn btn-next" id="nextVideo">
+            &#10095;
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SEÇÃO 9 - EQUIPE
+========================================= -->
+
+<section class="secao-equipe">
+
+    <div class="container-equipe">
+
+        <h2 class="titulo-equipe reveal">
+            Quem faz acontecer
+        </h2>
+
+        <h3 class="titulo-principal-equipe reveal">
+            Conheça quem está<br>
+            <span>por trás de tudo.</span>
+        </h3>
+
+        <p class="subtitulo-equipe reveal">
+            Pessoas que compartilham conhecimento,
+            dedicação e propósito para construir
+            resultados extraordinários.
+        </p>
+
+
+        <div class="grid-equipe">
+
+
+            <!-- INTEGRANTE 01 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="Manuel.jpeg" alt="Integrante 1">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
 
             </div>
 
+
+            <!-- INTEGRANTE 02 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="Eduardo.jpg.jpeg" alt="Integrante 2">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 03 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="emanuele.webp" alt="Integrante 3">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 04 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="fernanda.jpeg" alt="Integrante 4">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 05 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="igor.jpeg" alt="Integrante 5">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 06 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="Julia de Souza.jpg.jpeg" alt="Integrante 6">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 07 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="João.jpeg" alt="Integrante 7">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 08 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="maria.jpeg" alt="Integrante 8">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 09 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="aysha.jpeg" alt="Integrante 9">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Titulo</h3>
+                    <p class="cargo-membro">subtitulo</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 10 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="imagem aqui" alt="Integrante 10">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Nome da pessoa</h3>
+                    <p class="cargo-membro">Função</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 11 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="imagem aqui" alt="Integrante 11">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Nome da pessoa</h3>
+                    <p class="cargo-membro">Função</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- INTEGRANTE 12 -->
+
+            <div class="card-membro">
+
+                <div class="foto-membro">
+                    <img src="imagem aqui" alt="Integrante 12">
+                </div>
+
+                <div class="info-membro">
+                    <h3 class="nome-membro">Nome da pessoa</h3>
+                    <p class="cargo-membro">Função</p>
+
+                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                        WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+
         </div>
 
-    </section>
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     13. JAVASCRIPT - MODAL DOS VÍDEOS
+========================================= -->
+
+<script>
+
+const videoCards = document.querySelectorAll('.js-video-card div');
+
+const videoModal = document.getElementById('videoModal');
+
+const modalIframe = document.getElementById('modalIframe');
+
+const closeModal = document.getElementById('closeModal');
+
+const prevVideoBtn = document.getElementById('prevVideo');
+
+const nextVideoBtn = document.getElementById('nextVideo');
+
+
+const videoList = Array.from(videoCards).map(card =>
+    card.getAttribute('data-video')
+);
+
+let currentVideoIndex = 0;
+
+
+function openVideo(index) {
+
+    currentVideoIndex = index;
+
+    modalIframe.src = videoList[currentVideoIndex] + "?autoplay=1";
+
+    videoModal.classList.add('active');
+
+    document.body.style.overflow = 'hidden';
+
+}
+
+
+function closeVideoModal() {
+
+    videoModal.classList.remove('active');
+
+    modalIframe.src = "";
+
+    document.body.style.overflow = 'auto';
+
+}
+
+
+function nextVideo() {
+
+    let nextIndex = currentVideoIndex + 1;
+
+    if (nextIndex >= videoList.length) {
+        nextIndex = 0;
+    }
+
+    openVideo(nextIndex);
+
+}
+
+
+function prevVideo() {
+
+    let prevIndex = currentVideoIndex - 1;
+
+    if (prevIndex < 0) {
+        prevIndex = videoList.length - 1;
+    }
+
+    openVideo(prevIndex);
+
+}
+
+
+videoCards.forEach((card, index) => {
+
+    card.addEventListener('click', () => openVideo(index));
+
+});
+
+
+closeModal.addEventListener('click', closeVideoModal);
+
+nextVideoBtn.addEventListener('click', nextVideo);
+
+prevVideoBtn.addEventListener('click', prevVideo);
+
+
+videoModal.addEventListener('click', (e) => {
+
+    if (e.target === videoModal) {
+        closeVideoModal();
+    }
+
+});
+
+
+document.addEventListener('keydown', (e) => {
+
+    if (!videoModal.classList.contains('active')) return;
+
+    if (e.key === 'Escape') closeVideoModal();
+
+    if (e.key === 'ArrowRight') nextVideo();
+
+    if (e.key === 'ArrowLeft') prevVideo();
+
+});
+
+
+/* =========================================
+   14. ANIMAÇÕES DE ENTRADA
+========================================= */
+
+const revealElements = document.querySelectorAll(
+    '.reveal, .reveal-left, .reveal-right, .card-membro'
+);
+
+const revealObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add('visible');
+
+            revealObserver.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+
+revealElements.forEach((element, index) => {
+
+    element.style.transitionDelay = `${(index % 4) * 90}ms`;
+
+    revealObserver.observe(element);
+
+});
+
+</script>
 
 </body>
 </html>
