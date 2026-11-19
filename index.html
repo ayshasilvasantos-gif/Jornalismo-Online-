@@ -667,24 +667,30 @@ header {
    10. MODAL DOS VÍDEOS
 ========================================= */
 
+/* =========================================
+   10. MODAL DOS VÍDEOS - TELA INTEIRA
+========================================= */
+
 .video-modal {
     display: none;
 
     position: fixed;
     inset: 0;
 
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+    height: 100dvh;
 
-    background: rgba(0,35,25,0.95);
+    background: rgba(0,35,25,0.96);
     backdrop-filter: blur(12px);
 
-    z-index: 2000;
+    z-index: 99999;
 
     align-items: center;
     justify-content: center;
 
     opacity: 0;
+    overflow: hidden;
 }
 
 .video-modal.active {
@@ -705,8 +711,8 @@ header {
 .modal-content {
     position: relative;
 
-    width: 90%;
-    max-width: 400px;
+    width: min(90vw, 400px);
+    height: min(80dvh, 710px);
 
     aspect-ratio: 9 / 16;
 
@@ -730,6 +736,7 @@ header {
 }
 
 .modal-content iframe {
+    display: block;
     width: 100%;
     height: 100%;
     border: none;
@@ -745,7 +752,7 @@ header {
     font-weight: 400;
 
     cursor: pointer;
-    z-index: 2100;
+    z-index: 100001;
 
     background: rgba(255,255,255,0.12);
     border: none;
@@ -753,8 +760,6 @@ header {
 
     width: 45px;
     height: 45px;
-
-    transition: all 0.3s ease;
 }
 
 .close-modal:hover {
@@ -765,7 +770,6 @@ header {
 .nav-modal-btn {
     position: absolute;
     top: 50%;
-
     transform: translateY(-50%);
 
     background: rgba(255,255,255,0.12);
@@ -780,9 +784,7 @@ header {
     cursor: pointer;
     border-radius: 50%;
 
-    z-index: 2100;
-
-    transition: all 0.3s ease;
+    z-index: 100001;
 }
 
 .nav-modal-btn:hover {
@@ -797,6 +799,31 @@ header {
     right: 5%;
 }
 
+@media (max-width: 768px) {
+
+    .modal-content {
+        width: min(78vw, 400px);
+        height: min(75dvh, 710px);
+    }
+
+    .close-modal {
+        top: 15px;
+        right: 15px;
+    }
+
+    .nav-modal-btn {
+        padding: 10px 12px;
+        font-size: 17px;
+    }
+
+    .btn-prev {
+        left: 2%;
+    }
+
+    .btn-next {
+        right: 2%;
+    }
+}
 /* =========================================
    11. EQUIPE
 ========================================= */
@@ -1490,11 +1517,11 @@ header {
 
             <div
                 style="position:absolute;inset:0;z-index:2;"
-                data-video="https://www.youtube.com/embed/0su84ML6iG4">
+                data-video="https://www.youtube.com/embed/3t8N3KQIoW4">
             </div>
 
             <iframe
-                src="https://www.youtube.com/embed/0su84ML6iG4"
+                src="https://www.youtube.com/embed/3t8N3KQIoW4"
                 title="Vídeo 1"
                 allowfullscreen>
             </iframe>
@@ -1508,11 +1535,11 @@ header {
 
             <div
                 style="position:absolute;inset:0;z-index:2;"
-                data-video="https://www.youtube.com/embed/Jhz_gKGFI_8">
+                data-video="https://www.youtube.com/embed/BPXAuneJW1w">
             </div>
 
             <iframe
-                src="https://www.youtube.com/embed/Jhz_gKGFI_8"
+                src="https://www.youtube.com/embed/BPXAuneJW1w"
                 title="Vídeo 2"
                 allowfullscreen>
             </iframe>
@@ -1526,11 +1553,11 @@ header {
 
             <div
                 style="position:absolute;inset:0;z-index:2;"
-                data-video="https://www.youtube.com/embed/UyADzeswpIk">
+                data-video="https://www.youtube.com/embed/Y2j-N4XB7ss">
             </div>
 
             <iframe
-                src="https://www.youtube.com/embed/UyADzeswpIk"
+                src="https://www.youtube.com/embed/Y2j-N4XB7ss"
                 title="Vídeo 3"
                 allowfullscreen>
             </iframe>
@@ -1544,11 +1571,11 @@ header {
 
             <div
                 style="position:absolute;inset:0;z-index:2;"
-                data-video="https://www.youtube.com/embed/9S0IGSxQdUc">
+                data-video="https://www.youtube.com/embed/DdUjNJmOlWM">
             </div>
 
             <iframe
-                src="https://www.youtube.com/embed/9S0IGSxQdUc"
+                src="https://www.youtube.com/embed/DdUjNJmOlWM"
                 title="Vídeo 4"
                 allowfullscreen>
             </iframe>
@@ -1562,27 +1589,28 @@ header {
 
     <div class="video-modal" id="videoModal">
 
-        <button class="close-modal" id="closeModal">&times;</button>
+    <button class="close-modal" id="closeModal">&times;</button>
 
-        <button class="nav-modal-btn btn-prev" id="prevVideo">
-            &#10094;
-        </button>
+    <button class="nav-modal-btn btn-prev" id="prevVideo">
+        &#10094;
+    </button>
 
-        <div class="modal-content">
+    <div class="modal-content">
 
-            <iframe
-                id="modalIframe"
-                src=""
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-        <button class="nav-modal-btn btn-next" id="nextVideo">
-            &#10095;
-        </button>
+        <iframe
+            id="modalIframe"
+            src=""
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen>
+        </iframe>
 
     </div>
+
+    <button class="nav-modal-btn btn-next" id="nextVideo">
+        &#10095;
+    </button>
+
+</div>
 
 </section>
 
