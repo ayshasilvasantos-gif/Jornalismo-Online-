@@ -561,13 +561,15 @@ header {
 
 .secao-shorts {
     position: relative;
+    z-index: 9998;
+
     width: 100%;
     background: var(--fundo-galeria);
 
     padding: 85px 0;
 
-    overflow: hidden;
-    isolation: isolate;
+    overflow: visible;
+    isolation: auto;
 }
 
 .secao-shorts::before {
@@ -673,13 +675,14 @@ header {
     position: fixed;
     inset: 0;
 
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+    height: 100dvh;
 
     background: rgba(0,35,25,0.95);
     backdrop-filter: blur(12px);
 
-    z-index: 2000;
+    z-index: 2147483647;
 
     align-items: center;
     justify-content: center;
@@ -1212,13 +1215,36 @@ header {
     }
 
 }
+.video-modal,
+.video-modal.active {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+}
 
+.video-modal {
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+}
+
+.video-modal .modal-content {
+    position: relative;
+    z-index: 2147483647;
+}
+
+.video-modal .close-modal,
+.video-modal .nav-modal-btn {
+    z-index: 2147483647 !important;
+}
 </style>
 </head>
 
 <body>
 
 <div class="overlay" id="overlay"></div>
+
+   
 
 <!-- =========================================
      SEÇÃO 1 - CABEÇALHO
@@ -1478,7 +1504,7 @@ header {
 
         <span>Galeria</span>
 
-        <h2>subtitulo</h2>
+        <h2>Veja os vídeos e saiba mais</h2>
 
     </div>
 
@@ -1596,7 +1622,7 @@ header {
     <div class="container-equipe">
 
         <h2 class="titulo-equipe reveal">
-            Quem faz acontecer
+            Quem fez acontecer
         </h2>
 
         <h3 class="titulo-principal-equipe reveal">
@@ -1606,8 +1632,7 @@ header {
 
         <p class="subtitulo-equipe reveal">
             Pessoas que compartilham conhecimento,
-            dedicação e propósito para construir
-            resultados extraordinários.
+            dedicação e propósito.
         </p>
 
 
@@ -1623,12 +1648,15 @@ header {
                 </div>
 
                 <div class="info-membro">
-                    <h3 class="nome-membro">Titulo</h3>
-                    <p class="cargo-membro">subtitulo</p>
+                    <h3 class="nome-membro">Mari Oenning</h3>
+                    <p class="cargo-membro">Editora, Cinegrafista</p>
 
-                    <a class="whatsapp-btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
-                        WhatsApp
-                    </a>
+                    <a class="whatsapp-btn"
+   href="https://www.instagram.com/marianioenning/"
+   target="_blank"
+   rel="noopener noreferrer">
+    Instagram
+</a>
                 </div>
 
             </div>
